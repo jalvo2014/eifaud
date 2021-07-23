@@ -108,6 +108,8 @@ foreach $oneline (@cachep) {
    $ll += 1;
    next if $ll < 5;
    $rest = substr($oneline,1);
+   next if length($rest) < 2;
+   next if substr($rest,0,11) eq "ITM_Generic";
    my %avx;
    my $chunk;
    while (1) {
@@ -225,7 +227,7 @@ foreach my $f ( sort {$sitx{$b}->{count} <=> $sitx{$a}->{count}} keys %sitx) {
 print $report_fh "\n";
 print $report_fh "Cache Signal report from $opt_fn\n";
 print $report_fh "Node,Count,Sits,Atoms,Thrunodes,\n";
-foreach my $f ( sort {$a cmp $b} keys %ntx) {
+foreach my $f ( sort {$ntx{$b}->{count} <=> $ntx{$a}->{count}} keys %ntx) {
    my $node_ref = $ntx{$f};
    $oline = $f . ",";
    $oline .= $node_ref->{count} . ",";
