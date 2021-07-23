@@ -94,7 +94,7 @@ my %nodex;
 my %sitx;
 my %ntx;
 
-my $cache_fn = "cache.txt";
+my $cache_fn = $opt_fn;
 my $cache_fh;
 open $cache_fh, "<", $cache_fn || die("Could not open cache report  $cache_fn\n");
 my @cachep = <$cache_fh>;                   # Data read once and processed twice
